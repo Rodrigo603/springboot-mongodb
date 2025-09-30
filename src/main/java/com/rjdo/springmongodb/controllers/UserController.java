@@ -1,6 +1,7 @@
 package com.rjdo.springmongodb.controllers;
 
 import com.rjdo.springmongodb.dto.UserDTO;
+import com.rjdo.springmongodb.entities.Post;
 import com.rjdo.springmongodb.entities.User;
 import com.rjdo.springmongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,13 @@ public class UserController {
         User obj = service.findById(id);
         return ResponseEntity.ok().body(new UserDTO(obj));
     }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
+    }
+
     @PostMapping
     public ResponseEntity<Void> insert(@RequestBody UserDTO objDto) {
         User obj = service.fromDTO(objDto);
@@ -49,6 +57,7 @@ public class UserController {
         user = service.update(id,user);
         return ResponseEntity.ok().body(user);
     }
+
 
 
 }
