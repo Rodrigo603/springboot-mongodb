@@ -1,5 +1,6 @@
 package com.rjdo.springmongodb.config;
 
+import com.rjdo.springmongodb.dto.AuthorDTO;
 import com.rjdo.springmongodb.entities.Post;
 import com.rjdo.springmongodb.entities.User;
 import com.rjdo.springmongodb.repositories.PostRepository;
@@ -36,8 +37,8 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(maria,alex,bob));
 
-        Post post1 = new Post(null,sdf.parse("11/11/2011"),"Partiu viagem","Indo para Sergipe",alex);
-        Post post2 = new Post(null,sdf.parse("15/08/2005"),"Basquete","Ganhei um x1 ",alex);
+        Post post1 = new Post(null,sdf.parse("11/11/2011"),"Partiu viagem","Indo para Sergipe",new AuthorDTO(alex));
+        Post post2 = new Post(null,sdf.parse("15/08/2005"),"Basquete","Ganhei um x1 ",new AuthorDTO(alex));
 
         postRepository.saveAll(Arrays.asList(post1,post2));
 
